@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>AcidicSoftware.DomainDriven</RootNamespace>
+    <AssemblyName>AcidicSoftware.DomainDriven</AssemblyName>
+    <Product>Domain Driven Components</Product>
+    <Copyright>Acidic Software 2020</Copyright>
+    <Company>Acidic Software</Company>
+    <Authors>Michel Gammelgaard</Authors>
+    <Version>1.0.0-alpha.1</Version>
+    <RepositoryUrl>https://github.com/acidicsoftware/dotnet-domain-driven</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Domain Driven Development Design</PackageTags>
+    <Description />
+  </PropertyGroup>
+
+</Project>
