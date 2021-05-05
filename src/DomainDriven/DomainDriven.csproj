@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>AcidicSoftware.DomainDriven</RootNamespace>
-    <AssemblyName>AcidicSoftware.DomainDriven</AssemblyName>
+    <RootNamespace>Acidic.DomainDrivenDesign</RootNamespace>
+    <AssemblyName>Acidic.DomainDrivenDesign</AssemblyName>
     <Product>Domain Driven Components</Product>
     <Copyright>Acidic Software 2020</Copyright>
     <Company>Acidic Software</Company>

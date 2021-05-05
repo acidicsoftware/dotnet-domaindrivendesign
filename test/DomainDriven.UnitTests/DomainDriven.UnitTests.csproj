@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyName>AcidicSoftware.DomainDriven.UnitTests</AssemblyName>
-    <RootNamespace>AcidicSoftware.DomainDriven.UnitTests</RootNamespace>
+    <AssemblyName>Acidic.DomainDrivenDesign.UnitTests</AssemblyName>
+    <RootNamespace>Acidic.DomainDrivenDesign.UnitTests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
