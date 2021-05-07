@@ -60,11 +60,13 @@ namespace Acidic.DomainDrivenDesign
         public static bool operator ==(Value<T> lhs, Value<T> rhs)
         {
 
-            if (ReferenceEquals(lhs, null))
+            if (lhs is null)
             {
-                if (ReferenceEquals(rhs, null))
+                if (rhs is null)
+                {
                     return true;
-
+                }
+                    
                 return false;
             }
 
@@ -78,5 +80,21 @@ namespace Acidic.DomainDrivenDesign
         /// <param name="rhs">The second object to compare with.</param>
         /// <returns>false if the two object are equal; otherwise, true.</returns>
         public static bool operator !=(Value<T> lhs, Value<T> rhs) => !(lhs == rhs);
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            if (PropertiesForEqualityCheck.Length == 0)
+            {
+                return string.Empty;
+            }
+
+            if (PropertiesForEqualityCheck.Length == 1)
+            {
+                return PropertiesForEqualityCheck.First().ToString();
+            }
+
+            return string.Join(" - ", PropertiesForEqualityCheck.Select(property => property.ToString()));
+        }
     }
 }
