@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AcidicSoftware.DomainDriven.UnitTests.Entity
+namespace Acidic.DomainDrivenDesign.UnitTests.Entity
 {
     [TestClass]
-    public class Entity_HashCode_Tests
+    public class EntityHashCodeTests
     {
         [TestMethod]
         public void WHILE_IdentifierIsInt_WHEN_CalculatingHashCode_THEN_ReturnIdentifierHashCode()

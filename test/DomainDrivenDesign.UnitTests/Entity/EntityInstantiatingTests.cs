@@ -1,10 +1,10 @@
 ﻿using AcidicSoftware.DomainDriven.UnitTests.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AcidicSoftware.DomainDriven.UnitTests.Entity
+namespace Acidic.DomainDrivenDesign.UnitTests.Entity
 {
     [TestClass]
-    public class Entity_Instantiating_Tests
+    public class EntityInstantiatingTests
     {
         [TestMethod]
         public void WHILE_ArgumentsAreValid_WHEN_Instantiating_THEN_CreateInstance()

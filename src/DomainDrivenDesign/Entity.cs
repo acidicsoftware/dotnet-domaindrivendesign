@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AcidicSoftware.DomainDriven
+namespace Acidic.DomainDrivenDesign
 {
     /// <summary>
     /// The base type for classes that represent an entity.

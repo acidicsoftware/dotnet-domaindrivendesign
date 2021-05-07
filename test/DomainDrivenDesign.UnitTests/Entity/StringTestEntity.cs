@@ -1,4 +1,4 @@
-﻿namespace AcidicSoftware.DomainDriven.UnitTests.Entity
+﻿namespace Acidic.DomainDrivenDesign.UnitTests.Entity
 {
     internal class StringTestEntity : Entity<string>
     {

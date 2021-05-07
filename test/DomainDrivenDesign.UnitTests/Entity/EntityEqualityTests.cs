@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AcidicSoftware.DomainDriven.UnitTests.Entity
+namespace Acidic.DomainDrivenDesign.UnitTests.Entity
 {
     [TestClass]
-    public class Entity_Equality_Tests
+    public class EntityEqualityTests
     {
         [TestMethod]
         public void WHILE_IdentifiersAreEquivalent_WHEN_Comparing_EqualsMethod_THEN_ReturnTrue()

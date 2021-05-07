@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace AcidicSoftware.DomainDriven.UnitTests.Helpers
+namespace Acidic.DomainDrivenDesign.UnitTests.Helpers
 {
     public static class ExceptionHelpers
     {

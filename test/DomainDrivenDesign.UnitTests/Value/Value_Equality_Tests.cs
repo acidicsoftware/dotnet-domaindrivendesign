@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AcidicSoftware.DomainDriven.UnitTests.Value
+namespace Acidic.DomainDrivenDesign.UnitTests.Value
 {
     [TestClass]
     public class Value_Equality_Tests

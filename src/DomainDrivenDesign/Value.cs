@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace AcidicSoftware.DomainDriven
+namespace Acidic.DomainDrivenDesign
 {
     /// <summary>
     /// Represents a value object.

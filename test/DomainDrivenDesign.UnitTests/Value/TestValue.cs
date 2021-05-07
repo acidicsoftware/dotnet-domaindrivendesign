@@ -1,4 +1,4 @@
-﻿namespace AcidicSoftware.DomainDriven.UnitTests.Value
+﻿namespace Acidic.DomainDrivenDesign.UnitTests.Value
 {
     internal class TestValue : Value<TestValue>
     {
