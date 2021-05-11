@@ -10,8 +10,7 @@
             <ModulePaths>
               <Exclude>
                 <ModulePath>.*\.UnitTests.dll</ModulePath>
-                <ModulePath>.*\.IntegrationTests.dll</ModulePath>
-                <ModulePath>.*\Test.Shared.dll</ModulePath>
+                <ModulePath>.*\moq.dll</ModulePath>
               </Exclude>
             </ModulePaths>
             <UseVerifiableInstrumentation>True</UseVerifiableInstrumentation>

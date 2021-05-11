@@ -1,7 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Moq;
 
 namespace Acidic.DomainDrivenDesign.UnitTests.Entity
 {
@@ -9,11 +7,13 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
     public class EntityHashCodeTests
     {
         [TestMethod]
-        public void WHILE_IdentifierIsInt_WHEN_CalculatingHashCode_THEN_ReturnIdentifierHashCode()
+        public void WHEN_CalculatingHashCode_WHILE_IdentifierIsInt_THEN_ReturnIdentifierHashCode()
         {
             // Arrange
+            
             const int identifier = 1337;
-            var entity = new IntTestEntity(identifier);
+            var entityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var entity = entityMock.Object;
 
             var expectedHashCode = identifier.GetHashCode();
 

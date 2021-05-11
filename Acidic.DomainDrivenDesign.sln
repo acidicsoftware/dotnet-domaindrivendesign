@@ -3,9 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainDrivenDesign", "src\DomainDrivenDesign\DomainDrivenDesign.csproj", "{C2252E3F-6B8C-4743-870D-1579CC6BB76D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainDrivenDesign", "src\DomainDrivenDesign\DomainDrivenDesign.csproj", "{C2252E3F-6B8C-4743-870D-1579CC6BB76D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainDrivenDesign.UnitTests", "test\DomainDrivenDesign.UnitTests\DomainDrivenDesign.UnitTests.csproj", "{3764295F-02BB-46B9-9317-AC3C09855B5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainDrivenDesign.UnitTests", "test\DomainDrivenDesign.UnitTests\DomainDrivenDesign.UnitTests.csproj", "{3764295F-02BB-46B9-9317-AC3C09855B5D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{66904706-5F81-47B4-BA24-65C52EA9E7C7}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		Test.runsettings = Test.runsettings
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,5 +1,6 @@
-﻿using AcidicSoftware.DomainDriven.UnitTests.Helpers;
+﻿using Acidic.DomainDrivenDesign.UnitTests.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Acidic.DomainDrivenDesign.UnitTests.Entity
 {
@@ -7,33 +8,37 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
     public class EntityInstantiatingTests
     {
         [TestMethod]
-        public void WHILE_ArgumentsAreValid_WHEN_Instantiating_THEN_CreateInstance()
+        public void WHEN_Instantiating_WHILE_ArgumentIsValid_THEN_CreateInstance()
         {
             // Arrange
             const int expectedIdentifier = 1337;
 
             // Act
-            var entity = new IntTestEntity(expectedIdentifier);
+            var entityMock = new Mock<Entity<int>>(MockBehavior.Loose, expectedIdentifier);
+            var entity = entityMock.Object;
 
             // Assert
             Assert.AreEqual(expectedIdentifier, entity.Identifier);
         }
 
         [TestMethod]
-        public void WHILE_ArgumentIsNull_WHEN_Instantiating_THEN_ThrowException()
+        public void WHEN_Instantiating_WHILE_ArgumentIsNull_THEN_ThrowException()
         {
-            // Arrange, Act & Assert
-            ExceptionHelpers.ExpectArgumentNullException("identifier", () => new StringTestEntity(null));
+            // Arrange
+            const string identifier = null;
+
+            // Act & Assert
+            ExceptionHelpers.ExpectArgumentNullException("identifier", () => new StringEntity(identifier));
         }
 
         [TestMethod]
-        public void WHILE_IdentifierIsDefaultValue_WHEN_Instantiating_THEN_ThrowException()
+        public void WHEN_Instantiating_WHILE_IdentifierIsDefaultValue_THEN_ThrowException()
         {
             // Arrange
-            const int expectedIdentifier = default;
+            const int identifier = default;
 
             // Act & Assert
-            ExceptionHelpers.ExpectArgumentException("identifier", () => new IntTestEntity(expectedIdentifier));
+            ExceptionHelpers.ExpectArgumentException("identifier", () => new IntEntity(identifier));
         }
     }
 }

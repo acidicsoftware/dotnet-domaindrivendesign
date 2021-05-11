@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Acidic.DomainDrivenDesign.UnitTests.Entity
 {
@@ -6,164 +7,295 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
     public class EntityEqualityTests
     {
         [TestMethod]
-        public void WHILE_IdentifiersAreEquivalent_WHEN_Comparing_EqualsMethod_THEN_ReturnTrue()
+        public void WHEN_Comparing_EqualsMethod_Specific_WHILE_IdentifiersAreEqual_THEN_ReturnTrue()
         {
             // Arrange
             const int identifier = 1337;
 
-            var entity1 = new IntTestEntity(identifier);
-            var entity2 = new IntTestEntity(identifier);
+            var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var leftEntity = leftEntityMock.Object;
+
+            var rightEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var rightEntity = rightEntityMock.Object;
 
             // Act
-            var entitiesAreEqual = entity1.Equals(entity2);
+            var entitiesAreEqual = leftEntity.Equals(rightEntity);
 
             // Assert
             Assert.IsTrue(entitiesAreEqual);
         }
 
         [TestMethod]
-        public void WHILE_IdentifiersAreNotEquivalent_WHEN_Comparing_EqualsMethod_THEN_ReturnFalse()
+        public void WHEN_Comparing_EqualsMethod_Specific_WHILE_IdentifiersAreNotEqual_THEN_ReturnFalse()
         {
             // Arrange
-            const int identifier1 = 1337;
-            const int identifier2 = 4242;
+            const int leftIdentifier = 1337;
+            const int rightIdentifier = 4242;
 
-            var entity1 = new IntTestEntity(identifier1);
-            var entity2 = new IntTestEntity(identifier2);
+            var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, leftIdentifier);
+            var leftEntity = leftEntityMock.Object;
+
+            var rightEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, rightIdentifier);
+            var rightEntity = rightEntityMock.Object;
 
             // Act
-            var entitiesAreEqual = entity1.Equals(entity2);
+            var entitiesAreEqual = leftEntity.Equals(rightEntity);
 
             // Assert
             Assert.IsFalse(entitiesAreEqual);
         }
 
         [TestMethod]
-        public void WHILE_InputIsNull_WHEN_Comparing_EqualsMethod_THEN_ReturnTrue()
+        public void WHEN_Comparing_EqualsMethod_Specific_WHILE_InputIsNull_THEN_ReturnFalse()
         {
             // Arrange
             const int identifier = 1337;
 
-            var entity1 = new IntTestEntity(identifier);
-            IntTestEntity entity2 = null;
+            var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var leftEntity = leftEntityMock.Object;
+
+            Entity<int> rightEntity = null;
 
             // Act
-            var entitiesAreEqual = entity1.Equals(entity2);
+            var entitiesAreEqual = leftEntity.Equals(rightEntity);
 
             // Assert
             Assert.IsFalse(entitiesAreEqual);
         }
 
         [TestMethod]
-        public void WHILE_IdentifiersAreEquivalent_WHEN_Comparing_EqualsOperator_THEN_ReturnTrue()
+        public void WHEN_Comparing_EqualsMethod_Object_WHILE_IdentifiersAreEqual_THEN_ReturnTrue()
         {
             // Arrange
             const int identifier = 1337;
 
-            var entity1 = new IntTestEntity(identifier);
-            var entity2 = new IntTestEntity(identifier);
+            var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var leftEntity = leftEntityMock.Object;
+
+            var rightEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var rightEntity = (object) rightEntityMock.Object;
 
             // Act
-            var entitiesAreEqual = entity1 == entity2;
+            var entitiesAreEqual = leftEntity.Equals(rightEntity);
 
             // Assert
             Assert.IsTrue(entitiesAreEqual);
         }
 
         [TestMethod]
-        public void WHILE_IdentifiersAreNotEquivalent_WHEN_Comparing_EqualsOperator_THEN_ReturnFalse()
+        public void WHEN_Comparing_EqualsMethod_Object_WHILE_IdentifiersAreNotEqual_THEN_ReturnFalse()
         {
             // Arrange
-            const int identifier1 = 1337;
-            const int identifier2 = 4242;
+            const int leftIdentifier = 1337;
+            const int rightIdentifier = 4242;
 
-            var entity1 = new IntTestEntity(identifier1);
-            var entity2 = new IntTestEntity(identifier2);
+            var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, leftIdentifier);
+            var leftEntity = leftEntityMock.Object;
+
+            var rightEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, rightIdentifier);
+            var rightEntity = (object) rightEntityMock.Object;
 
             // Act
-            var entitiesAreEqual = entity1 == entity2;
+            var entitiesAreEqual = leftEntity.Equals(rightEntity);
 
             // Assert
             Assert.IsFalse(entitiesAreEqual);
         }
 
         [TestMethod]
-        public void WHILE_LeftSideIsNull_RightSideIsNotNull_WHEN_Comparing_EqualsOperator_THEN_ReturnFalse()
+        public void WHEN_Comparing_EqualsMethod_Object_WHILE_InputIsNull_THEN_ReturnFalse()
         {
             // Arrange
             const int identifier = 1337;
 
-            IntTestEntity entity1 = null;
-            var entity2 = new IntTestEntity(identifier);
+            var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var leftEntity = leftEntityMock.Object;
+
+            var rightEntity = (object) null;
 
             // Act
-            var entitiesAreEqual = entity1 == entity2;
+            var entitiesAreEqual = leftEntity.Equals(rightEntity);
 
             // Assert
             Assert.IsFalse(entitiesAreEqual);
         }
 
         [TestMethod]
-        public void WHILE_LeftSideIsNotNull_RightSideIsNull_WHEN_Comparing_EqualsOperator_THEN_ReturnFalse()
+        public void WHEN_Comparing_EqualsOperator_WHILE_IdentifiersAreEqual_THEN_ReturnTrue()
         {
             // Arrange
             const int identifier = 1337;
 
-            var entity1 = new IntTestEntity(identifier);
-            IntTestEntity entity2 = null;
+            var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var leftEntity = leftEntityMock.Object;
+
+            var rightEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var rightEntity = rightEntityMock.Object;
 
             // Act
-            var entitiesAreEqual = entity1 == entity2;
-
-            // Assert
-            Assert.IsFalse(entitiesAreEqual);
-        }
-
-        [TestMethod]
-        public void WHILE_BothSidesAreNull_WHEN_Comparing_EqualsOperator_THEN_ReturnTrue()
-        {
-            // Arrange
-            IntTestEntity entity1 = null;
-            IntTestEntity entity2 = null;
-
-            // Act
-            var entitiesAreEqual = entity1 == entity2;
+            var entitiesAreEqual = leftEntity == rightEntity;
 
             // Assert
             Assert.IsTrue(entitiesAreEqual);
         }
 
         [TestMethod]
-        public void WHILE_IdentifiersAreEquivalent_WHEN_Comparing_NotEqualsOperator_THEN_ReturnFalse()
+        public void WHEN_Comparing_EqualsOperator_WHILE_IdentifiersAreNotEqual_THEN_ReturnFalse()
         {
             // Arrange
-            const int identifier = 1337;
+            const int leftIdentifier = 1337;
+            const int rightIdentifier = 4242;
 
-            var entity1 = new IntTestEntity(identifier);
-            var entity2 = new IntTestEntity(identifier);
+            var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, leftIdentifier);
+            var leftEntity = leftEntityMock.Object;
+
+            var rightEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, rightIdentifier);
+            var rightEntity = rightEntityMock.Object;
 
             // Act
-            var entitiesAreEqual = entity1 != entity2;
+            var entitiesAreEqual = leftEntity == rightEntity;
 
             // Assert
             Assert.IsFalse(entitiesAreEqual);
         }
 
         [TestMethod]
-        public void WHILE_IdentifiersAreNotEquivalent_WHEN_Comparing_NotEqualsOperator_THEN_ReturnTrue()
+        public void WHEN_Comparing_EqualsOperator_WHILE_LeftSideIsNull_THEN_ReturnFalse()
         {
             // Arrange
-            const int identifier1 = 1337;
-            const int identifier2 = 4242;
+            const int identifier = 1337;
 
-            var entity1 = new IntTestEntity(identifier1);
-            var entity2 = new IntTestEntity(identifier2);
+            Entity<int> leftEntity = null;
+
+            var rightEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var rightEntity = rightEntityMock.Object;
 
             // Act
-            var entitiesAreEqual = entity1 != entity2;
+            var entitiesAreEqual = leftEntity == rightEntity;
+
+            // Assert
+            Assert.IsFalse(entitiesAreEqual);
+        }
+
+        [TestMethod]
+        public void WHEN_Comparing_EqualsOperator_WHILE_RightSideIsNull_THEN_ReturnFalse()
+        {
+            // Arrange
+            const int identifier = 1337;
+
+            var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var leftEntity = leftEntityMock.Object;
+
+            Entity<int> rightEntity = null;
+
+            // Act
+            var entitiesAreEqual = leftEntity == rightEntity;
+
+            // Assert
+            Assert.IsFalse(entitiesAreEqual);
+        }
+
+        [TestMethod]
+        public void WHEN_Comparing_EqualsOperator_WHILE_BothSidesAreNull_THEN_ReturnTrue()
+        {
+            // Arrange
+            Entity<int> leftEntity = null;
+            Entity<int> rightEntity = null;
+
+            // Act
+            var entitiesAreEqual = leftEntity == rightEntity;
 
             // Assert
             Assert.IsTrue(entitiesAreEqual);
+        }
+
+        [TestMethod]
+        public void WHEN_Comparing_NotEqualsOperator_WHILE_IdentifiersAreEqual_THEN_ReturnFalse()
+        {
+            // Arrange
+            const int identifier = 1337;
+
+            var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var leftEntity = leftEntityMock.Object;
+
+            var rightEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var rightEntity = rightEntityMock.Object;
+
+            // Act
+            var entitiesAreEqual = leftEntity != rightEntity;
+
+            // Assert
+            Assert.IsFalse(entitiesAreEqual);
+        }
+
+        [TestMethod]
+        public void WHEN_Comparing_NotEqualsOperator_WHILE_IdentifiersAreNotEqual_THEN_ReturnTrue()
+        {
+            // Arrange
+            const int leftIdentifier = 1337;
+            const int rightIdentifier = 4242;
+
+            var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, leftIdentifier);
+            var leftEntity = leftEntityMock.Object;
+
+            var rightEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, rightIdentifier);
+            var rightEntity = rightEntityMock.Object;
+
+            // Act
+            var entitiesAreEqual = leftEntity != rightEntity;
+
+            // Assert
+            Assert.IsTrue(entitiesAreEqual);
+        }
+
+        [TestMethod]
+        public void WHEN_Comparing_NotEqualsOperator_WHILE_LeftSideIsNull_THEN_ReturnTrue()
+        {
+            // Arrange
+            const int identifier = 1337;
+
+            IntEntity leftEntity = null;
+
+            var rightEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var rightEntity = rightEntityMock.Object;
+
+            // Act
+            var entitiesAreEqual = leftEntity != rightEntity;
+
+            // Assert
+            Assert.IsTrue(entitiesAreEqual);
+        }
+
+        [TestMethod]
+        public void WHEN_Comparing_NotEqualsOperator_WHILE_RightSideIsNull_THEN_ReturnTrue()
+        {
+            // Arrange
+            const int identifier = 1337;
+
+            var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var leftEntity = leftEntityMock.Object;
+
+            Entity<int> rightEntity = null;
+
+            // Act
+            var entitiesAreEqual = leftEntity != rightEntity;
+
+            // Assert
+            Assert.IsTrue(entitiesAreEqual);
+        }
+
+        [TestMethod]
+        public void WHEN_Comparing_NotEqualsOperator_WHILE_BothSidesAreNull_THEN_ReturnFalse()
+        {
+            // Arrange
+            Entity<int> leftEntity = null;
+            Entity<int> rightEntity = null;
+
+            // Act
+            var entitiesAreEqual = leftEntity != rightEntity;
+
+            // Assert
+            Assert.IsFalse(entitiesAreEqual);
         }
     }
 }
