@@ -1,11 +1,32 @@
 ﻿namespace Acidic.DomainDrivenDesign.UnitTests.Value
 {
-    internal class TestValue : Value<TestValue>
+    internal class NoFieldsValue : Value<NoFieldsValue>
+    {
+        public NoFieldsValue()
+        {
+        }
+
+        protected override object[] PropertiesForEqualityCheck => new object[] { };
+    }
+
+    internal class SingleFieldValue : Value<SingleFieldValue>
     {
         public int Field1 { get; }
-        public double Field2 { get; }
 
-        public TestValue(int field1, double field2)
+        public SingleFieldValue(int field1)
+        {
+            Field1 = field1;
+        }
+
+        protected override object[] PropertiesForEqualityCheck => new object[] { Field1 };
+    }
+
+    internal class MultipleFieldsValue : Value<MultipleFieldsValue>
+    {
+        public int Field1 { get; }
+        public string Field2 { get; }
+
+        public MultipleFieldsValue(int field1, string field2)
         {
             Field1 = field1;
             Field2 = field2;

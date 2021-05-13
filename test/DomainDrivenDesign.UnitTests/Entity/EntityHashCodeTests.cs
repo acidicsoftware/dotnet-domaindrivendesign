@@ -7,10 +7,9 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
     public class EntityHashCodeTests
     {
         [TestMethod]
-        public void WHEN_CalculatingHashCode_WHILE_IdentifierIsInt_THEN_ReturnIdentifierHashCode()
+        public void WHEN_CalculatingHashCode_THEN_ReturnIdentifierHashCode()
         {
             // Arrange
-            
             const int identifier = 1337;
             var entityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
             var entity = entityMock.Object;

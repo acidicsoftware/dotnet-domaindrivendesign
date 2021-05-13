@@ -14,7 +14,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
             const int expectedIdentifier = 1337;
 
             // Act
-            var entityMock = new Mock<Entity<int>>(MockBehavior.Loose, expectedIdentifier);
+            var entityMock = new Mock<Entity<int>>(expectedIdentifier);
             var entity = entityMock.Object;
 
             // Assert

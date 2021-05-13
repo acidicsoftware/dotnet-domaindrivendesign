@@ -126,10 +126,10 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
             // Arrange
             const int identifier = 1337;
 
-            var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var leftEntityMock = new Mock<Entity<int>>(identifier);
             var leftEntity = leftEntityMock.Object;
 
-            var rightEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var rightEntityMock = new Mock<Entity<int>>(identifier);
             var rightEntity = rightEntityMock.Object;
 
             // Act
@@ -146,10 +146,10 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
             const int leftIdentifier = 1337;
             const int rightIdentifier = 4242;
 
-            var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, leftIdentifier);
+            var leftEntityMock = new Mock<Entity<int>>(leftIdentifier);
             var leftEntity = leftEntityMock.Object;
 
-            var rightEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, rightIdentifier);
+            var rightEntityMock = new Mock<Entity<int>>(rightIdentifier);
             var rightEntity = rightEntityMock.Object;
 
             // Act
@@ -167,7 +167,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
 
             Entity<int> leftEntity = null;
 
-            var rightEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var rightEntityMock = new Mock<Entity<int>>(identifier);
             var rightEntity = rightEntityMock.Object;
 
             // Act
@@ -183,7 +183,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
             // Arrange
             const int identifier = 1337;
 
-            var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var leftEntityMock = new Mock<Entity<int>>(identifier);
             var leftEntity = leftEntityMock.Object;
 
             Entity<int> rightEntity = null;
@@ -215,10 +215,10 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
             // Arrange
             const int identifier = 1337;
 
-            var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var leftEntityMock = new Mock<Entity<int>>(identifier);
             var leftEntity = leftEntityMock.Object;
 
-            var rightEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var rightEntityMock = new Mock<Entity<int>>(identifier);
             var rightEntity = rightEntityMock.Object;
 
             // Act
@@ -235,10 +235,10 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
             const int leftIdentifier = 1337;
             const int rightIdentifier = 4242;
 
-            var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, leftIdentifier);
+            var leftEntityMock = new Mock<Entity<int>>(leftIdentifier);
             var leftEntity = leftEntityMock.Object;
 
-            var rightEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, rightIdentifier);
+            var rightEntityMock = new Mock<Entity<int>>(rightIdentifier);
             var rightEntity = rightEntityMock.Object;
 
             // Act
@@ -256,7 +256,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
 
             IntEntity leftEntity = null;
 
-            var rightEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var rightEntityMock = new Mock<Entity<int>>(identifier);
             var rightEntity = rightEntityMock.Object;
 
             // Act
@@ -272,7 +272,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
             // Arrange
             const int identifier = 1337;
 
-            var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
+            var leftEntityMock = new Mock<Entity<int>>(identifier);
             var leftEntity = leftEntityMock.Object;
 
             Entity<int> rightEntity = null;

@@ -54,7 +54,7 @@ namespace Acidic.DomainDrivenDesign
         /// <returns>true if the current object is equal to the other parameter; otherwise, false.</returns>
         public bool Equals(Entity<TIdentifier> other)
         {
-            if (ReferenceEquals(other, null))
+            if (other is null)
                 return false;
 
             return Identifier.Equals(other.Identifier);
@@ -68,10 +68,9 @@ namespace Acidic.DomainDrivenDesign
         /// <returns>true if the two object are equal; otherwise, false.</returns>
         public static bool operator ==(Entity<TIdentifier> lhs, Entity<TIdentifier> rhs)
         {
-
-            if (ReferenceEquals(lhs, null))
+            if (lhs is null)
             {
-                if (ReferenceEquals(rhs, null))
+                if (rhs is null)
                     return true;
 
                 return false;
@@ -87,5 +86,8 @@ namespace Acidic.DomainDrivenDesign
         /// <param name="rhs">The second object to compare with.</param>
         /// <returns>false if the two object are equal; otherwise, true.</returns>
         public static bool operator !=(Entity<TIdentifier> lhs, Entity<TIdentifier> rhs) => !(lhs == rhs);
+
+        /// <inheritdoc />
+        public override string ToString() => Identifier.ToString();
     }
 }

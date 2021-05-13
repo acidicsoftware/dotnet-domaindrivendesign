@@ -43,9 +43,9 @@ namespace Acidic.DomainDrivenDesign
         {
             var hashCode = 352033288;
             
-            foreach (var propertyForEqualityCheck in PropertiesForEqualityCheck)
+            foreach (var property in PropertiesForEqualityCheck)
             {
-                hashCode = hashCode * -1521134295 + propertyForEqualityCheck.GetHashCode();
+                hashCode = hashCode * -1521134295 + property.GetHashCode();
             }
 
             return hashCode;
