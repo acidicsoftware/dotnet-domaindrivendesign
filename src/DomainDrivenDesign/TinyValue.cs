@@ -23,7 +23,7 @@ namespace Acidic.DomainDrivenDesign
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue(nameof(Value), Value, typeof(string));
+            info.AddValue(nameof(Value), Value, typeof(T));
         }
     }
 

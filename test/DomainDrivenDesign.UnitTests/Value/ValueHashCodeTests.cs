@@ -1,7 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Acidic.DomainDrivenDesign.UnitTests.Value
 {
@@ -27,12 +24,12 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Value
         public void WHEN_CalculatingHashCode_WHILE_ValueHasSingleValue_THEN_ReturnHashCode()
         {
             // Arrange
-            const int valueField = 1337;
+            const int fieldValue = 1337;
 
-            var value = new SingleFieldValue(valueField);
+            var value = new SingleFieldValue(fieldValue);
 
             var expectedHashCode = 352033288;
-            expectedHashCode = expectedHashCode * -1521134295 + valueField.GetHashCode();
+            expectedHashCode = expectedHashCode * -1521134295 + fieldValue.GetHashCode();
 
             // Act
             var actualHashCode = value.GetHashCode();
@@ -45,14 +42,14 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Value
         public void WHEN_CalculatingHashCode_WHILE_ValueHasMultipleValues_THEN_ReturnHashCode()
         {
             // Arrange
-            const int valueField1 = 1337;
-            const string valueField2 = "value";
+            const int field1Value = 1337;
+            const string field2Value = "value";
 
-            var value = new MultipleFieldsValue(valueField1, valueField2);
+            var value = new MultipleFieldsValue(field1Value, field2Value);
 
             var expectedHashCode = 352033288;
-            expectedHashCode = expectedHashCode * -1521134295 + valueField1.GetHashCode();
-            expectedHashCode = expectedHashCode * -1521134295 + valueField2.GetHashCode();
+            expectedHashCode = expectedHashCode * -1521134295 + field1Value.GetHashCode();
+            expectedHashCode = expectedHashCode * -1521134295 + field2Value.GetHashCode();
 
             // Act
             var actualHashCode = value.GetHashCode();

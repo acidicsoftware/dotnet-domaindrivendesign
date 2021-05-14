@@ -5,7 +5,7 @@ using Moq;
 namespace Acidic.DomainDrivenDesign.UnitTests.Entity
 {
     [TestClass]
-    public class EntityInstantiatingTests
+    public class EntityInstantiationTests
     {
         [TestMethod]
         public void WHEN_Instantiating_WHILE_ArgumentIsValid_THEN_CreateInstance()
