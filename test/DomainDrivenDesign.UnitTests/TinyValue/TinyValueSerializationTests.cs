@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
 using System.Runtime.Serialization;
 
 namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue

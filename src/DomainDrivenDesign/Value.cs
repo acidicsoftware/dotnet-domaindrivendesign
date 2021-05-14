@@ -42,7 +42,7 @@ namespace Acidic.DomainDrivenDesign
         public override int GetHashCode()
         {
             var hashCode = 352033288;
-            
+
             foreach (var property in PropertiesForEqualityCheck)
             {
                 hashCode = hashCode * -1521134295 + property.GetHashCode();
@@ -66,7 +66,7 @@ namespace Acidic.DomainDrivenDesign
                 {
                     return true;
                 }
-                    
+
                 return false;
             }
 

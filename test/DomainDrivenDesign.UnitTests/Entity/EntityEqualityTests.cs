@@ -73,7 +73,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
             var leftEntity = leftEntityMock.Object;
 
             var rightEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
-            var rightEntity = (object) rightEntityMock.Object;
+            var rightEntity = (object)rightEntityMock.Object;
 
             // Act
             var entitiesAreEqual = leftEntity.Equals(rightEntity);
@@ -93,7 +93,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
             var leftEntity = leftEntityMock.Object;
 
             var rightEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, rightIdentifier);
-            var rightEntity = (object) rightEntityMock.Object;
+            var rightEntity = (object)rightEntityMock.Object;
 
             // Act
             var entitiesAreEqual = leftEntity.Equals(rightEntity);
@@ -111,7 +111,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
             var leftEntityMock = new Mock<Entity<int>>(MockBehavior.Loose, identifier);
             var leftEntity = leftEntityMock.Object;
 
-            var rightEntity = (object) null;
+            var rightEntity = (object)null;
 
             // Act
             var entitiesAreEqual = leftEntity.Equals(rightEntity);

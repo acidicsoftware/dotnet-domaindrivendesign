@@ -65,7 +65,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Value
             const string value2 = "value";
 
             var leftValue = new MultipleFieldsValue(value1, value2);
-            var rightValue = (object) new MultipleFieldsValue(value1, value2);
+            var rightValue = (object)new MultipleFieldsValue(value1, value2);
 
             // Act
             var valuesAreEqual = leftValue.Equals(rightValue);
@@ -83,7 +83,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Value
             const string value3 = "value";
 
             var leftValue = new MultipleFieldsValue(value1, value3);
-            var rightValue = (object) new MultipleFieldsValue(value2, value3);
+            var rightValue = (object)new MultipleFieldsValue(value2, value3);
 
             // Act
             var valuesAreEqual = leftValue.Equals(rightValue);
@@ -100,7 +100,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Value
             const string value2 = "value";
 
             var leftValue = new MultipleFieldsValue(value1, value2);
-            var rightValue = (object) null;
+            var rightValue = (object)null;
 
             // Act
             var valuesAreEqual = leftValue.Equals(rightValue);

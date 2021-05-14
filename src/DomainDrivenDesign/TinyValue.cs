@@ -42,7 +42,7 @@ namespace Acidic.DomainDrivenDesign
         {
             var value1 = info.GetValue(nameof(Value1), typeof(T1));
             var value2 = info.GetValue(nameof(Value2), typeof(T2));
-            
+
             Value1 = value1 == default ? default : (T1)value1;
             Value2 = value2 == default ? default : (T2)value2;
         }
