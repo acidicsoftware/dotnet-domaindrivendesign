@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    name: Build, Test & Release
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.x'
+
+      - name: Restore Nuget Packages
+        run: dotnet restore
+
+      - name: Build Solution
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run Tests
+        run: dotnet test --configuration Release --no-restore --no-build
+
+      - name: Pack
+        run: dotnet pack ./src/DomainDrivenDesign/DomainDrivenDesign.csproj --configuration Release --no-restore --no-build --output ./release/
+
+      - name: Release
+        run: dotnet nuget push .\release\*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json

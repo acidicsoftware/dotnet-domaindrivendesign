@@ -10,7 +10,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{66904706-5F81-47B4-BA24-65C52EA9E7C7}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		.github\workflows\continuous-integration.yml = .github\workflows\continuous-integration.yml
 		LICENSE = LICENSE
+		.github\workflows\release.yml = .github\workflows\release.yml
 		Test.runsettings = Test.runsettings
 	EndProjectSection
 EndProject
