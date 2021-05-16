@@ -13,7 +13,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             // Arrange
             const int expectedFieldValue = 1337;
 
-            var tinyValue = new TinyValue<int>(expectedFieldValue);
+            var tinyValue = new Mock<TinyValue<int>>(expectedFieldValue).Object;
 
             var formatterConverterMock = new Mock<IFormatterConverter>();
 
@@ -37,7 +37,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             const int expectedField1Value = 1337;
             const string expectedField2Value = "value";
 
-            var tinyValue = new TinyValue<int, string>(expectedField1Value, expectedField2Value);
+            var tinyValue = new Mock<TinyValue<int, string>>(expectedField1Value, expectedField2Value).Object;
 
             var formatterConverterMock = new Mock<IFormatterConverter>();
 
@@ -64,7 +64,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             const string expectedField2Value = "value";
             const double expectedField3Value = 42.42;
 
-            var tinyValue = new TinyValue<int, string, double>(expectedField1Value, expectedField2Value, expectedField3Value);
+            var tinyValue = new Mock<TinyValue<int, string, double>>(expectedField1Value, expectedField2Value, expectedField3Value).Object;
 
             var formatterConverterMock = new Mock<IFormatterConverter>();
 
@@ -94,7 +94,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             const double expectedField3Value = 42.42;
             const float expectedField4Value = 42.1337f;
 
-            var tinyValue = new TinyValue<int, string, double, float>(expectedField1Value, expectedField2Value, expectedField3Value, expectedField4Value);
+            var tinyValue = new Mock<TinyValue<int, string, double, float>>(expectedField1Value, expectedField2Value, expectedField3Value, expectedField4Value).Object;
 
             var formatterConverterMock = new Mock<IFormatterConverter>();
 
@@ -127,7 +127,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             const float expectedField4Value = 42.1337f;
             const int expectedField5Value = 3;
 
-            var tinyValue = new TinyValue<int, string, double, float, int>(expectedField1Value, expectedField2Value, expectedField3Value, expectedField4Value, expectedField5Value);
+            var tinyValue = new Mock<TinyValue<int, string, double, float, int>>(expectedField1Value, expectedField2Value, expectedField3Value, expectedField4Value, expectedField5Value).Object;
 
             var formatterConverterMock = new Mock<IFormatterConverter>();
 
@@ -158,7 +158,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             // Arrange
             const int expectedFieldValue = 1337;
 
-            var tinyValue = new TinyValue<int>(expectedFieldValue);
+            var tinyValue = new Mock<TinyValue<int>>(expectedFieldValue).Object;
 
             var formatterConverterMock = new Mock<IFormatterConverter>();
 
@@ -168,7 +168,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             tinyValue.GetObjectData(serializationInfo, streamingContext);
 
             // Act
-            var deserializedTinyValue = new TinyValue<int>(serializationInfo, streamingContext);
+            var deserializedTinyValue = new Mock<TinyValue<int>>(serializationInfo, streamingContext).Object;
 
             // Assert
             Assert.AreEqual(expectedFieldValue, deserializedTinyValue.Value);
@@ -181,7 +181,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             const int expectedField1Value = 1337;
             const string expectedField2Value = "value";
 
-            var tinyValue = new TinyValue<int, string>(expectedField1Value, expectedField2Value);
+            var tinyValue = new Mock<TinyValue<int, string>>(expectedField1Value, expectedField2Value).Object;
 
             var formatterConverterMock = new Mock<IFormatterConverter>();
 
@@ -191,7 +191,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             tinyValue.GetObjectData(serializationInfo, streamingContext);
 
             // Act
-            var deserializedTinyValue = new TinyValue<int, string>(serializationInfo, streamingContext);
+            var deserializedTinyValue = new Mock<TinyValue<int, string>>(serializationInfo, streamingContext).Object;
 
             // Assert
             Assert.AreEqual(expectedField1Value, deserializedTinyValue.Value1);
@@ -206,7 +206,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             const string expectedField2Value = "value";
             const double expectedField3Value = 42.42;
 
-            var tinyValue = new TinyValue<int, string, double>(expectedField1Value, expectedField2Value, expectedField3Value);
+            var tinyValue = new Mock<TinyValue<int, string, double>>(expectedField1Value, expectedField2Value, expectedField3Value).Object;
 
             var formatterConverterMock = new Mock<IFormatterConverter>();
 
@@ -216,7 +216,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             tinyValue.GetObjectData(serializationInfo, streamingContext);
 
             // Act
-            var deserializedTinyValue = new TinyValue<int, string, double>(serializationInfo, streamingContext);
+            var deserializedTinyValue = new Mock<TinyValue<int, string, double>>(serializationInfo, streamingContext).Object;
 
             // Assert
             Assert.AreEqual(expectedField1Value, deserializedTinyValue.Value1);
@@ -233,7 +233,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             const double expectedField3Value = 42.42;
             const float expectedField4Value = 42.1337f;
 
-            var tinyValue = new TinyValue<int, string, double, float>(expectedField1Value, expectedField2Value, expectedField3Value, expectedField4Value);
+            var tinyValue = new Mock<TinyValue<int, string, double, float>>(expectedField1Value, expectedField2Value, expectedField3Value, expectedField4Value).Object;
 
             var formatterConverterMock = new Mock<IFormatterConverter>();
 
@@ -243,7 +243,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             tinyValue.GetObjectData(serializationInfo, streamingContext);
 
             // Act
-            var deserializedTinyValue = new TinyValue<int, string, double, float>(serializationInfo, streamingContext);
+            var deserializedTinyValue = new Mock<TinyValue<int, string, double, float>>(serializationInfo, streamingContext).Object;
 
             // Assert
             Assert.AreEqual(expectedField1Value, deserializedTinyValue.Value1);
@@ -262,7 +262,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             const float expectedField4Value = 42.1337f;
             const int expectedField5Value = 3;
 
-            var tinyValue = new TinyValue<int, string, double, float, int>(expectedField1Value, expectedField2Value, expectedField3Value, expectedField4Value, expectedField5Value);
+            var tinyValue = new Mock<TinyValue<int, string, double, float, int>>(expectedField1Value, expectedField2Value, expectedField3Value, expectedField4Value, expectedField5Value).Object;
 
             var formatterConverterMock = new Mock<IFormatterConverter>();
 
@@ -272,7 +272,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             tinyValue.GetObjectData(serializationInfo, streamingContext);
 
             // Act
-            var deserializedTinyValue = new TinyValue<int, string, double, float, int>(serializationInfo, streamingContext);
+            var deserializedTinyValue = new Mock<TinyValue<int, string, double, float, int>>(serializationInfo, streamingContext).Object;
 
             // Assert
             Assert.AreEqual(expectedField1Value, deserializedTinyValue.Value1);

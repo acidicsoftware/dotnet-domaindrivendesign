@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
 {
@@ -11,7 +12,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             // Arrange
             const int fieldValue = 1337;
 
-            var tinyValue = new TinyValue<int>(fieldValue);
+            var tinyValue = new OneFieldTinyValue(fieldValue);
 
             var expectedHashCode = 352033288;
             expectedHashCode = expectedHashCode * -1521134295 + fieldValue.GetHashCode();
@@ -30,7 +31,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             const int field1Value = 1337;
             const string field2Value = "value";
 
-            var tinyValue = new TinyValue<int, string>(field1Value, field2Value);
+            var tinyValue = new TwoFieldsTinyValue(field1Value, field2Value);
 
             var expectedHashCode = 352033288;
             expectedHashCode = expectedHashCode * -1521134295 + field1Value.GetHashCode();
@@ -51,7 +52,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             const string field2Value = "value";
             const double field3Value = 42.42;
 
-            var tinyValue = new TinyValue<int, string, double>(field1Value, field2Value, field3Value);
+            var tinyValue = new ThreeFieldsTinyValue(field1Value, field2Value, field3Value);
 
             var expectedHashCode = 352033288;
             expectedHashCode = expectedHashCode * -1521134295 + field1Value.GetHashCode();
@@ -74,7 +75,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             const double field3Value = 42.42;
             const float field4Value = 42.1337f;
 
-            var tinyValue = new TinyValue<int, string, double, float>(field1Value, field2Value, field3Value, field4Value);
+            var tinyValue = new FourFieldsTinyValue(field1Value, field2Value, field3Value, field4Value);
 
             var expectedHashCode = 352033288;
             expectedHashCode = expectedHashCode * -1521134295 + field1Value.GetHashCode();
@@ -99,7 +100,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             const float field4Value = 42.1337f;
             const int field5Value = 3;
 
-            var tinyValue = new TinyValue<int, string, double, float, int>(field1Value, field2Value, field3Value, field4Value, field5Value);
+            var tinyValue = new FiveFieldsTinyValue(field1Value, field2Value, field3Value, field4Value, field5Value);
 
             var expectedHashCode = 352033288;
             expectedHashCode = expectedHashCode * -1521134295 + field1Value.GetHashCode();

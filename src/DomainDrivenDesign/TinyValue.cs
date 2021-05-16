@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Acidic.DomainDrivenDesign
 {
     [Serializable]
-    public sealed class TinyValue<T> : Value<TinyValue<T>>, ISerializable
+    public abstract class TinyValue<T> : Value<TinyValue<T>>, ISerializable
     {
         public T Value { get; }
 
@@ -27,7 +27,7 @@ namespace Acidic.DomainDrivenDesign
         }
     }
 
-    public sealed class TinyValue<T1, T2> : Value<TinyValue<T1, T2>>, ISerializable
+    public abstract class TinyValue<T1, T2> : Value<TinyValue<T1, T2>>, ISerializable
     {
         public T1 Value1 { get; }
         public T2 Value2 { get; }
@@ -56,7 +56,7 @@ namespace Acidic.DomainDrivenDesign
         }
     }
 
-    public sealed class TinyValue<T1, T2, T3> : Value<TinyValue<T1, T2, T3>>, ISerializable
+    public abstract class TinyValue<T1, T2, T3> : Value<TinyValue<T1, T2, T3>>, ISerializable
     {
         public T1 Value1 { get; }
         public T2 Value2 { get; }
@@ -90,7 +90,7 @@ namespace Acidic.DomainDrivenDesign
         }
     }
 
-    public sealed class TinyValue<T1, T2, T3, T4> : Value<TinyValue<T1, T2, T3, T4>>, ISerializable
+    public abstract class TinyValue<T1, T2, T3, T4> : Value<TinyValue<T1, T2, T3, T4>>, ISerializable
     {
         public T1 Value1 { get; }
         public T2 Value2 { get; }
@@ -129,7 +129,7 @@ namespace Acidic.DomainDrivenDesign
         }
     }
 
-    public sealed class TinyValue<T1, T2, T3, T4, T5> : Value<TinyValue<T1, T2, T3, T4, T5>>, ISerializable
+    public abstract class TinyValue<T1, T2, T3, T4, T5> : Value<TinyValue<T1, T2, T3, T4, T5>>, ISerializable
     {
         public T1 Value1 { get; }
         public T2 Value2 { get; }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
 {
@@ -12,7 +13,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             const int expectedFieldValue = 1337;
 
             // Act
-            var entity = new TinyValue<int>(expectedFieldValue);
+            var entity = new Mock<TinyValue<int>>(expectedFieldValue).Object;
 
             // Assert
             Assert.AreEqual(expectedFieldValue, entity.Value);
@@ -26,7 +27,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             const string expectedField2Value = "Value";
 
             // Act
-            var entity = new TinyValue<int, string>(expectedField1Value, expectedField2Value);
+            var entity = new Mock<TinyValue<int, string>>(expectedField1Value, expectedField2Value).Object;
 
             // Assert
             Assert.AreEqual(expectedField1Value, entity.Value1);
@@ -42,7 +43,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             const double expectedField3Value = 42.42;
 
             // Act
-            var entity = new TinyValue<int, string, double>(expectedField1Value, expectedField2Value, expectedField3Value);
+            var entity = new Mock<TinyValue<int, string, double>>(expectedField1Value, expectedField2Value, expectedField3Value).Object;
 
             // Assert
             Assert.AreEqual(expectedField1Value, entity.Value1);
@@ -60,7 +61,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             const float expectedField4Value = 42.1337f;
 
             // Act
-            var entity = new TinyValue<int, string, double, float>(expectedField1Value, expectedField2Value, expectedField3Value, expectedField4Value);
+            var entity = new Mock<TinyValue<int, string, double, float>>(expectedField1Value, expectedField2Value, expectedField3Value, expectedField4Value).Object;
 
             // Assert
             Assert.AreEqual(expectedField1Value, entity.Value1);
@@ -80,7 +81,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
             const int expectedField5Value = 3;
 
             // Act
-            var entity = new TinyValue<int, string, double, float, int>(expectedField1Value, expectedField2Value, expectedField3Value, expectedField4Value, expectedField5Value);
+            var entity = new Mock<TinyValue<int, string, double, float, int>>(expectedField1Value, expectedField2Value, expectedField3Value, expectedField4Value, expectedField5Value).Object;
 
             // Assert
             Assert.AreEqual(expectedField1Value, entity.Value1);
