@@ -23,14 +23,10 @@ namespace Acidic.DomainDrivenDesign
         /// </summary>
         /// <param name="identifier">The unique identity of the entity.</param>
         /// <exception cref="ArgumentNullException">The argument <paramref name="identifier"/></exception>
-        /// <exception cref="ArgumentException">The default value of the type <see cref="TIdentifier"/> is not allowed to be used as the identifier.</exception>
         protected Entity(TIdentifier identifier)
         {
             if (identifier == null)
                 throw new ArgumentNullException(nameof(identifier));
-
-            if (Equals(identifier, default(TIdentifier)))
-                throw new ArgumentException("The identifier cannot be the default value.", nameof(identifier));
 
             Identifier = identifier;
         }

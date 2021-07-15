@@ -7,12 +7,17 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
     [TestClass]
     public class EntityInstantiationTests
     {
-        [TestMethod]
-        public void WHEN_Instantiating_WHILE_ArgumentIsValid_THEN_CreateInstance()
+        [DataTestMethod]
+        [DataRow(int.MinValue)]
+        [DataRow(-1337)]
+        [DataRow(-1)]
+        [DataRow(0)]
+        [DataRow(default(int))]
+        [DataRow(1)]
+        [DataRow(1337)]
+        [DataRow(int.MaxValue)]
+        public void WHEN_Instantiating_WHILE_ArgumentIsValid_THEN_CreateInstance(int expectedIdentifier)
         {
-            // Arrange
-            const int expectedIdentifier = 1337;
-
             // Act
             var entityMock = new Mock<Entity<int>>(expectedIdentifier);
             var entity = entityMock.Object;
@@ -29,16 +34,6 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
 
             // Act & Assert
             ExceptionHelpers.ExpectArgumentNullException("identifier", () => new StringEntity(identifier));
-        }
-
-        [TestMethod]
-        public void WHEN_Instantiating_WHILE_IdentifierIsDefaultValue_THEN_ThrowException()
-        {
-            // Arrange
-            const int identifier = default;
-
-            // Act & Assert
-            ExceptionHelpers.ExpectArgumentException("identifier", () => new IntEntity(identifier));
         }
     }
 }
