@@ -15,7 +15,7 @@ namespace Acidic.DomainDrivenDesign
     {
         /// <summary>
         /// An object array, containing references to all of the value object properties that should be used
-        /// when comparing one value object with another.
+        /// when comparing one value object to another.
         /// </summary>
         protected abstract object[] PropertiesForEqualityCheck { get; }
 

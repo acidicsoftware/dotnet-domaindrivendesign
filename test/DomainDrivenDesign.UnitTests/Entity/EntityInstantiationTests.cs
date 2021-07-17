@@ -5,7 +5,7 @@ using Moq;
 namespace Acidic.DomainDrivenDesign.UnitTests.Entity
 {
     [TestClass]
-    public class EntityInstantiationTests
+    public sealed class EntityInstantiationTests
     {
         [DataTestMethod]
         [DataRow(int.MinValue)]

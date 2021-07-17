@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Acidic.DomainDrivenDesign.UnitTests.Helpers
 {
-    public static class ExceptionHelpers
+    internal static class ExceptionHelpers
     {
         public static void ExpectException<TException>(Action actionCallback, Action<TException> exceptionCallback = null) where TException : Exception
         {

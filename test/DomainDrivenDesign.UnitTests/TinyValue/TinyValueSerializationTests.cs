@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
 {
     [TestClass]
-    public class TinyValueSerializationTests
+    public sealed class TinyValueSerializationTests
     {
         [TestMethod]
         public void WHEN_Serializing_OneValue_THEN_ValueIsSaved()

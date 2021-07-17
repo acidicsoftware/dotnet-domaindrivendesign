@@ -4,7 +4,7 @@ using Moq;
 namespace Acidic.DomainDrivenDesign.UnitTests.Entity
 {
     [TestClass]
-    public class EntityEqualityTests
+    public sealed class EntityEqualityTests
     {
         [TestMethod]
         public void WHEN_Comparing_EqualsMethod_Specific_WHILE_IdentifiersAreEqual_THEN_ReturnTrue()

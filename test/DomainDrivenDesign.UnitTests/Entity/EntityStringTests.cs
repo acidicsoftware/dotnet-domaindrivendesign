@@ -3,7 +3,7 @@
 namespace Acidic.DomainDrivenDesign.UnitTests.Entity
 {
     [TestClass]
-    public class EntityStringTests
+    public sealed class EntityStringTests
     {
         [TestMethod]
         public void WHEN_ConvertingToString_THEN_ReturnIdentifiersString()

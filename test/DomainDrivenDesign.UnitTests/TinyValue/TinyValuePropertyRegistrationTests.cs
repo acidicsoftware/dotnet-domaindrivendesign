@@ -1,10 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 
 namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
 {
     [TestClass]
-    public class TinyValuePropertyRegistrationTests
+    public sealed class TinyValuePropertyRegistrationTests
     {
         [TestMethod]
         public void WHEN_OneValue_WHILE_InstanceCreated_THEN_ReturnCorrectHashCode()

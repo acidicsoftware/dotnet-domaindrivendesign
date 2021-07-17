@@ -4,7 +4,7 @@ using Moq;
 namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
 {
     [TestClass]
-    public class TinyValueInstantiationTests
+    public sealed class TinyValueInstantiationTests
     {
         [TestMethod]
         public void WHEN_OneValue_Instantiating_THEN_PropertiesAreSet()

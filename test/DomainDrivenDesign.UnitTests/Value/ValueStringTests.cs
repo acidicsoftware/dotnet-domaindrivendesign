@@ -3,7 +3,7 @@
 namespace Acidic.DomainDrivenDesign.UnitTests.Value
 {
     [TestClass]
-    public class ValueStringTests
+    public sealed class ValueStringTests
     {
         [TestMethod]
         public void WHEN_ConvertingToString_WHILE_ValueHasNoFields_THEN_ReturnEmptyString()
@@ -44,7 +44,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Value
             const int field1Value = 42;
             const string field2Value = "value";
 
-            var expectedValueString = $"{field1Value.ToString()} - {field2Value.ToString()}";
+            var expectedValueString = $"{field1Value.ToString()} - {field2Value}";
 
             var value = new MultipleFieldsValue(field1Value, field2Value);
 

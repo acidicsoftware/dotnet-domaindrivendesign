@@ -3,7 +3,7 @@
 namespace Acidic.DomainDrivenDesign.UnitTests.Value
 {
     [TestClass]
-    public class ValueEqualityTests
+    public sealed class ValueEqualityTests
     {
         [TestMethod]
         public void WHEN_Comparing_EqualsMethod_Specific_WHILE_FieldsAreEqual_THEN_ReturnTrue()

@@ -1,15 +1,11 @@
 ﻿namespace Acidic.DomainDrivenDesign.UnitTests.Value
 {
-    internal class NoFieldsValue : Value<NoFieldsValue>
+    internal sealed class NoFieldsValue : Value<NoFieldsValue>
     {
-        public NoFieldsValue()
-        {
-        }
-
         protected override object[] PropertiesForEqualityCheck => new object[] { };
     }
 
-    internal class SingleFieldValue : Value<SingleFieldValue>
+    internal sealed class SingleFieldValue : Value<SingleFieldValue>
     {
         public int Field1 { get; }
 
@@ -21,7 +17,7 @@
         protected override object[] PropertiesForEqualityCheck => new object[] { Field1 };
     }
 
-    internal class MultipleFieldsValue : Value<MultipleFieldsValue>
+    internal sealed class MultipleFieldsValue : Value<MultipleFieldsValue>
     {
         public int Field1 { get; }
         public string Field2 { get; }

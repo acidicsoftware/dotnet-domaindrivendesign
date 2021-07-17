@@ -4,7 +4,7 @@ using Moq;
 namespace Acidic.DomainDrivenDesign.UnitTests.Entity
 {
     [TestClass]
-    public class EntityHashCodeTests
+    public sealed class EntityHashCodeTests
     {
         [TestMethod]
         public void WHEN_CalculatingHashCode_THEN_ReturnIdentifierHashCode()

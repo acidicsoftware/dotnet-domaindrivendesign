@@ -3,7 +3,7 @@
 namespace Acidic.DomainDrivenDesign.UnitTests.Value
 {
     [TestClass]
-    public class ValueHashCodeTests
+    public sealed class ValueHashCodeTests
     {
         [TestMethod]
         public void WHEN_CalculatingHashCode_WHILE_ValueHasNoFields_THEN_ReturnHashCode()
