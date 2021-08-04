@@ -1,4 +1,5 @@
-﻿using Acidic.DomainDrivenDesign.UnitTests.Helpers;
+﻿using System.Reflection;
+using Acidic.DomainDrivenDesign.UnitTests.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -23,7 +24,8 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
             var entity = entityMock.Object;
 
             // Assert
-            Assert.AreEqual(expectedIdentifier, entity.Identifier);
+            var actualIdentifier = entity.GetType().GetProperty("Identifier", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(entity) as int?;
+            Assert.AreEqual(expectedIdentifier, actualIdentifier);
         }
 
         [TestMethod]

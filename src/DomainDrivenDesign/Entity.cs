@@ -14,9 +14,9 @@ namespace Acidic.DomainDrivenDesign
     public abstract class Entity<TIdentifier> : IEquatable<Entity<TIdentifier>>
     {
         /// <summary>
-        /// The unique identity of the entity.
+        /// The unique identifier of the entity.
         /// </summary>
-        public TIdentifier Identifier { get; }
+        protected TIdentifier Identifier { get; }
 
         /// <summary>
         /// Creates a new instance of <see cref="Entity{TIdentifier}"/>.
