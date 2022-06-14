@@ -45,7 +45,7 @@ namespace Acidic.DomainDrivenDesign
 
             foreach (var property in PropertiesForEqualityCheck)
             {
-                hashCode = hashCode * -1521134295 + property.GetHashCode();
+                hashCode = hashCode * -1521134295 + (property == null ? 0 : property.GetHashCode());
             }
 
             return hashCode;
