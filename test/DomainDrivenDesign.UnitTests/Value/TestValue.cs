@@ -7,9 +7,9 @@
 
     internal sealed class SingleFieldValue : Value<SingleFieldValue>
     {
-        public int Field1 { get; }
+        public string Field1 { get; }
 
-        public SingleFieldValue(int field1)
+        public SingleFieldValue(string field1)
         {
             Field1 = field1;
         }
@@ -19,10 +19,10 @@
 
     internal sealed class MultipleFieldsValue : Value<MultipleFieldsValue>
     {
-        public int Field1 { get; }
+        public string Field1 { get; }
         public string Field2 { get; }
 
-        public MultipleFieldsValue(int field1, string field2)
+        public MultipleFieldsValue(string field1, string field2)
         {
             Field1 = field1;
             Field2 = field2;

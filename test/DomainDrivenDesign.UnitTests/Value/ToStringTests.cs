@@ -1,15 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acidic.DomainDrivenDesign.UnitTests.Value
 {
     [TestClass]
-    public sealed class ValueStringTests
+    public sealed class ToStringTests
     {
         [TestMethod]
-        public void WHEN_ConvertingToString_WHILE_ValueHasNoFields_THEN_ReturnEmptyString()
+        public void WHEN_ValueHasNoFields_THEN_ReturnEmptyString()
         {
             // Arrange
-            var expectedFieldValue = string.Empty;
+            const string expectedFieldValue = "";
 
             var value = new NoFieldsValue();
 
@@ -21,12 +21,12 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Value
         }
 
         [TestMethod]
-        public void WHEN_ConvertingToString_WHILE_ValueHasSingleField_THEN_ReturnFieldString()
+        public void WHEN_ValueHasSingleField_THEN_ReturnFieldString()
         {
             // Arrange
-            const int fieldValue = 42;
-
-            var expectedValueString = fieldValue.ToString();
+            const string fieldValue = "Some awesome value";
+            
+            var expectedValueString = fieldValue;
 
             var value = new SingleFieldValue(fieldValue);
 
@@ -38,13 +38,13 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Value
         }
 
         [TestMethod]
-        public void WHEN_ConvertingToString_WHILE_ValueHasMultipleFields_THEN_ReturnConcatenatedFieldsString()
+        public void WHEN_ValueHasMultipleFields_THEN_ReturnConcatenatedFieldsString()
         {
             // Arrange
-            const int field1Value = 42;
-            const string field2Value = "value";
+            const string field1Value = "Some awesome value";
+            const string field2Value = "An even more awesome value";
 
-            var expectedValueString = $"{field1Value.ToString()} - {field2Value}";
+            var expectedValueString = $"{field1Value} - {field2Value}";
 
             var value = new MultipleFieldsValue(field1Value, field2Value);
 
