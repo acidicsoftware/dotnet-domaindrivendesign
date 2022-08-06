@@ -45,7 +45,7 @@ public sealed class ValueWithNestedValueTests
         Assert.IsFalse(valuesAreEqual);
     }
     
-    private sealed class Customer
+    private sealed class Customer : Value<Customer>
     {
         public readonly CustomerIdentifier CustomerIdentifier;
         public readonly Address Address;
