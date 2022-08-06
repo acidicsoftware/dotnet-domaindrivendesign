@@ -5,10 +5,10 @@
     <RootNamespace>Acidic.DomainDrivenDesign</RootNamespace>
     <AssemblyName>Acidic.DomainDrivenDesign</AssemblyName>
     <Product>Domain Driven Design Components</Product>
-    <Copyright>2021 Acidic Software</Copyright>
-    <Company>Acidic Software</Company>
+    <Copyright>Copyright (c) Acidus 2022</Copyright>
+    <Company>Acidus</Company>
     <Authors>Michel Gammelgaard</Authors>
-    <RepositoryUrl>https://github.com/acidicsoftware/dotnet-domaindrivendesign</RepositoryUrl>
+    <RepositoryUrl>https://github.com/acidus-effect/dotnet-domaindrivendesign</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Domain;Driven;Design;Development;Value;Entity</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
