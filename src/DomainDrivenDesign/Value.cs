@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace Acidic.DomainDrivenDesign
 {
@@ -14,11 +18,17 @@ namespace Acidic.DomainDrivenDesign
     public abstract class Value<T> : IEquatable<T> where T : Value<T>
     {
         /// <summary>
-        /// An object array, containing references to all of the value object properties that should be used
-        /// when comparing one value object to another.
+        /// An object array, containing references to all of the object values that should be used when comparing one
+        /// value object to another.
         /// </summary>
-        protected abstract object[] PropertiesForEqualityCheck { get; }
+        [Exclude]
+        private readonly Lazy<object[]> _includedValues;
 
+        protected Value()
+        {
+            _includedValues = new Lazy<object[]>(() => IncludedValuesAnalyzer.GetValuesInType(this));
+        }
+        
         /// <inheritdoc />
         public sealed override bool Equals(object other)
         {
@@ -35,7 +45,7 @@ namespace Acidic.DomainDrivenDesign
             if (other == null)
                 return false;
 
-            return PropertiesForEqualityCheck.SequenceEqual(other.PropertiesForEqualityCheck);
+            return _includedValues.Value.SequenceEqual(other._includedValues.Value);
         }
 
         /// <inheritdoc />
@@ -43,9 +53,9 @@ namespace Acidic.DomainDrivenDesign
         {
             var hashCode = 352033288;
 
-            foreach (var property in PropertiesForEqualityCheck)
+            foreach (var property in _includedValues.Value)
             {
-                hashCode = hashCode * -1521134295 + property.GetHashCode();
+                hashCode = hashCode * -1521134295 + (property == null ? 0 : property.GetHashCode());
             }
 
             return hashCode;
@@ -84,17 +94,19 @@ namespace Acidic.DomainDrivenDesign
         /// <inheritdoc />
         public override string ToString()
         {
-            if (PropertiesForEqualityCheck.Length == 0)
+            var propertiesForEqualityCheck = _includedValues.Value;
+            
+            if (!propertiesForEqualityCheck.Any())
             {
                 return string.Empty;
             }
 
-            if (PropertiesForEqualityCheck.Length == 1)
+            if (propertiesForEqualityCheck.Count() == 1)
             {
-                return PropertiesForEqualityCheck.First().ToString();
+                return propertiesForEqualityCheck.First().ToString();
             }
 
-            return string.Join(" - ", PropertiesForEqualityCheck.Select(property => property.ToString()));
+            return string.Join(" - ", propertiesForEqualityCheck.Select(property => property.ToString()));
         }
     }
 }

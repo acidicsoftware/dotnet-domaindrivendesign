@@ -1,7 +1,9 @@
-# Acidic Domain Driven Design ![ci branch parameter](https://github.com/acidicsoftware/dotnet-domaindrivendesign/workflows/Continuous%20Integration/badge.svg?branch=trunk)
-This library provides base classes useful in projects that conforms to Domain Driven Design principles or projects that just wants to use the tiny types pattern.
+# Domain Driven Design Components
+![ci branch parameter](https://github.com/acidicsoftware/dotnet-domaindrivendesign/workflows/Continuous%20Integration/badge.svg?branch=trunk)
 
-The code is heavily inspired by Scott Millett's book Patterns, Principles, and Practices of Domain-Driven Design.
+This .NET library provides base classes useful in projects that aims to conform to Domain Driven Design principles or projects that just wants to use the tiny types pattern.
+
+The code is heavily inspired by the book Patterns, Principles, and Practices of Domain-Driven Design by Scott Millett.
 
 ## Classes
 The library defines three different base classes.
@@ -11,58 +13,84 @@ The library defines three different base classes.
 * TinyValue
 
 ## Entity
-The base class for entities and aggregate roots.
+Base class for entities and aggregate roots.
 
-An Entity is defined by having a unique identifier and this identifier alone makes an entity unique. If two entities share the same identifier, they are considered equal, even if the other data contained in the entities are different.
+An entity is defined by having a unique identifier. This identifier alone makes the entity unique.
+
+If two entities share the same identifier values they are considered equal. This is also true even when the other data contained within the two entities are different.
 
 ```csharp
-public sealed class Basket : Entity<Guid> {
-
+public sealed class Basket : Entity<Guid>
+{
   public Address InvoiceAddress { get; }
-  public Address DeliveryAddress { get; }
-  
-  /* More fields */
+  public Address? DeliveryAddress { get; }
 
-  public Basket(guid identifier) : base(identifier)
+  public Basket(Guid identifier, Address invoiceAddress, Address? deliveryAddress) : base(identifier)
   {
+     InvoiceAddress = invoiceAddress;
+     DeliveryAddress = deliveryAddress;
   }
-} 
+}
 ```
 
-From outside the class, the entity identifier is accessible via the `Identifier` property.
+From outside the class the entity identifier is accessible via the `Identifier` property.
 
 ```csharp
 var basket = new Basket(identifier);
 var basketIdentifier = basket.Identifier;
 ```
 
-The `Equals()` method is implemented to only compare the two entities identifiers. No other field are taken into consideration when comparing entities.
+The `Equals()` method is implemented to only compare the two entities identifiers. No other fields are taken into account when comparing.
 
 The `==` and `!=` operators are also available for comparing entities.
 
 ## Value
 The base class for value classes.
 
-A value class contains one or more fields (or values). Two instances of the same value type are consideres to be equal if and only if, the corresponding fields in each instance has the same values.
+A value class contains one or more fields. Two instances of the same value type are considered to be equal if and only if the corresponding fields in each instance have the same values.
 
 ```csharp
-public sealed class Address : Value<Address> {
+public sealed class Address : Value<Address>
+{
+  private readonly string _street;
+  private readonly string _houseNumber;
+  private readonly string _floor;
+  private readonly string _postalCode;
 
-  public string Street { get; }
-  public string HouseNumber { get; }
-  public string Floor { get; }
-  public string PostalCode { get; }
+  public string Street => _street;
+  public string HouseNumber => _houseNumber;
+  public string Floor => _floor;
+  public string PostalCode => _postalCode;
   
-  /* More fields */
-  
-  protected override object[] PropertiesForEqualityCheck => new object[] { Street, HouseNumber, Floor, PostalCode };
-
   public Address(string street, string houseNumber, string floor, string postalCode)
   {
-    Street = street;
-    HouseNumber = houseNumber;
-    Floor = floor;
-    PostalCode = postalCode;
+    _street = street;
+    _houseNumber = houseNumber;
+    _floor = floor;
+    _postalCode = postalCode;
+  }
+} 
+```
+
+The `Value` base class uses reflection to identify the fields used in equality operations. All private instance fields in subclasses of `Value` will by default be part of this list.
+
+To exclude a private instance field from equality checks annotate the field with [IgnoreFieldAttribute](src/DomainDrivenDesign/IgnoreFieldAttribute.cs).
+
+```csharp
+public sealed class SomeValue : Value<SomeValue> {
+
+  private readonly string _fieldToInclude;
+  
+  [IgnoreField]
+  private readonly string _fieldToExclude;
+
+  public string FieldToInclude => _fieldToInclude;
+  public string FieldToExclude => _fieldToExclude;
+  
+  public SomeValue(string fieldToInclude, string fieldToExclude)
+  {
+    _fieldToInclude = fieldToInclude;
+    _fieldToExclude = fieldToExclude;
   }
 } 
 ```
@@ -75,4 +103,4 @@ The `==` and `!=` operators are also available for comparing values types.
 
 Coming soon.
 
-*© Copyright 2021 Michel Gammelgaard. All rights reserved. Provided under the [MIT license](LICENSE).*
+*Copyright © 2022 Michel Gammelgaard, Acidus. All rights reserved. Provided under the [MIT license](LICENSE).*
