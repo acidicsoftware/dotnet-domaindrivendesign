@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 
 namespace Acidic.DomainDrivenDesign
@@ -9,25 +9,19 @@ namespace Acidic.DomainDrivenDesign
     /// A value object is defined by its value(s) and not by a unique identifier.
     /// Two value object are considered equal if and only if their value members contain the same values.
     /// </summary>
-    /// <remarks>
-    /// The value members to be included in equality operations are located using reflection. Please refer to the
-    /// documentation for details.
+    /// /// <remarks>
+    /// The list of value member to be included in equality operations are provided manually by overriding the abstract
+    /// property PropertiesForEqualityCheck. Please refer to the documentation for details.
     /// </remarks>
     /// <typeparam name="T">The type of the concrete value object class.</typeparam>
-    public abstract class Value<T> : IEquatable<T> where T : Value<T>
+    public abstract class ManualValue<T> : IEquatable<T> where T : ManualValue<T>
     {
         /// <summary>
-        /// An object array, containing references to all of the object values that should be used when comparing one
-        /// value object to another.
+        /// An object array, containing references to all of the value object properties that should be used
+        /// when comparing one value object to another.
         /// </summary>
-        [Exclude]
-        private readonly Lazy<object[]> _includedValues;
+        protected abstract object[] PropertiesForEqualityCheck { get; }
 
-        protected Value()
-        {
-            _includedValues = new Lazy<object[]>(() => IncludedValuesAnalyzer.GetValuesInType(this));
-        }
-        
         /// <inheritdoc />
         public sealed override bool Equals(object other)
         {
@@ -44,7 +38,7 @@ namespace Acidic.DomainDrivenDesign
             if (other == null)
                 return false;
 
-            return _includedValues.Value.SequenceEqual(other._includedValues.Value);
+            return PropertiesForEqualityCheck.SequenceEqual(other.PropertiesForEqualityCheck);
         }
 
         /// <inheritdoc />
@@ -52,7 +46,7 @@ namespace Acidic.DomainDrivenDesign
         {
             var hashCode = 352033288;
 
-            foreach (var property in _includedValues.Value)
+            foreach (var property in PropertiesForEqualityCheck)
             {
                 hashCode = hashCode * -1521134295 + (property == null ? 0 : property.GetHashCode());
             }
@@ -66,7 +60,7 @@ namespace Acidic.DomainDrivenDesign
         /// <param name="lhs">The first object to compare with.</param>
         /// <param name="rhs">The second object to compare with.</param>
         /// <returns>true if the two object are equal; otherwise, false.</returns>
-        public static bool operator ==(Value<T> lhs, Value<T> rhs)
+        public static bool operator ==(ManualValue<T> lhs, ManualValue<T> rhs)
         {
 
             if (lhs is null)
@@ -88,24 +82,22 @@ namespace Acidic.DomainDrivenDesign
         /// <param name="lhs">The first object to compare with.</param>
         /// <param name="rhs">The second object to compare with.</param>
         /// <returns>false if the two object are equal; otherwise, true.</returns>
-        public static bool operator !=(Value<T> lhs, Value<T> rhs) => !(lhs == rhs);
+        public static bool operator !=(ManualValue<T> lhs, ManualValue<T> rhs) => !(lhs == rhs);
 
         /// <inheritdoc />
         public override string ToString()
         {
-            var propertiesForEqualityCheck = _includedValues.Value;
-            
-            if (!propertiesForEqualityCheck.Any())
+            if (PropertiesForEqualityCheck.Length == 0)
             {
                 return string.Empty;
             }
 
-            if (propertiesForEqualityCheck.Count() == 1)
+            if (PropertiesForEqualityCheck.Length == 1)
             {
-                return propertiesForEqualityCheck.First().ToString();
+                return PropertiesForEqualityCheck.First().ToString();
             }
 
-            return string.Join(" - ", propertiesForEqualityCheck.Select(property => property.ToString()));
+            return string.Join(" - ", PropertiesForEqualityCheck.Select(property => property.ToString()));
         }
     }
 }
