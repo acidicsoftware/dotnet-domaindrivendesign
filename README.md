@@ -76,15 +76,6 @@ All excluded value members are skipped. More on that in the next sections.
 
 The `==` and `!=` operators are also available for comparison operations.
 
-### Value Member State
-A value member can be in one of three inclusion states.
-
-| State | Annotation | Description |
-| :-- | :-- | :-- |
-| Neutral | No Annotation | Value member is included by default. |
-| Included | [IncludeAttribute](src/DomainDrivenDesign/IncludeAttribute.cs) | Value member is included |
-| Excluded | [ExcludeAttribute](src/DomainDrivenDesign/ExcludeAttribute.cs) | Value member is excluded |
-
 ### Excluding Value Members
 Annotate a value member with [ExcludeAttribute](src/DomainDrivenDesign/ExcludeAttribute.cs) to exclude it from equality operations.
 
@@ -140,16 +131,15 @@ var salmonNigiriPiecesAreEqual = firstSalmonNirigi.Equals(secondSalmonNirigi); /
 
 If the `Price` property had not been explicitly annotated with [IncludeAttribute](src/DomainDrivenDesign/IncludeAttribute.cs) then the exclusion would have been inherited and the price would still have been ignored.
 
-### Inheritance
-The inclusion state of value members are inherited by child classes.
+### A Word on Inheritance
+The state of value members are inherited by child classes.
 If a value member is excluded then it's also excluded in all classes inheriting from this class.
 
 Properties are special value member in that they can be overridden if marked as virtual.
-If a property is overridden, the properties are checked one by one starting from the o
+If a property is overridden, the properties checked one by one starting from the outermost class in which the property is declared. This first explicit inclusion or exclusion encountered defines the state of that property.
+If non of the properties are explicitly annotated then the property will be regarded as included.
 
-
-
-
+The login that applies to virtual properties also apply to abstract properties and their implementations.
 
 Note that if a value member is annotated with both [ExcludeAttribute](src/DomainDrivenDesign/ExcludeAttribute.cs) and [IncludeAttribute](src/DomainDrivenDesign/IncludeAttribute.cs) then the value member will be excluded since an exclude trumps an include.
 
