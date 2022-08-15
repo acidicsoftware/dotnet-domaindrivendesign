@@ -1,7 +1,9 @@
-# Acidic Domain Driven Design ![ci branch parameter](https://github.com/acidicsoftware/dotnet-domaindrivendesign/workflows/Continuous%20Integration/badge.svg?branch=trunk)
-This library provides base classes useful in projects that conforms to Domain Driven Design principles or projects that just wants to use the tiny types pattern.
+# Domain Driven Design Components
+![ci branch parameter](https://github.com/acidicsoftware/dotnet-domaindrivendesign/workflows/Continuous%20Integration/badge.svg?branch=trunk)
 
-The code is heavily inspired by Scott Millett's book Patterns, Principles, and Practices of Domain-Driven Design.
+This .NET library provides base classes useful in projects that aims to conform to Domain Driven Design principles or projects that just wants to use the tiny types pattern.
+
+The code is heavily inspired by the book Patterns, Principles, and Practices of Domain-Driven Design by Scott Millett.
 
 ## Classes
 The library defines three different base classes.
@@ -11,52 +13,54 @@ The library defines three different base classes.
 * TinyValue
 
 ## Entity
-The base class for entities and aggregate roots.
+The `Entity` class is the base class for entities and aggregate roots.
 
-An Entity is defined by having a unique identifier and this identifier alone makes an entity unique. If two entities share the same identifier, they are considered equal, even if the other data contained in the entities are different.
+An entity is defined by having a unique identifier. This identifier alone makes an entity unique.
+
+Two entities of the same type are considered to be equal if and only if they have the same identifier value. This is also true even when the other data contained within the two entities are different.
 
 ```csharp
-public sealed class Basket : Entity<Guid> {
-
+public sealed class Basket : Entity<Guid>
+{
   public Address InvoiceAddress { get; }
-  public Address DeliveryAddress { get; }
-  
-  /* More fields */
+  public Address? DeliveryAddress { get; }
 
-  public Basket(guid identifier) : base(identifier)
+  public Basket(Guid identifier, Address invoiceAddress, Address? deliveryAddress) : base(identifier)
   {
+     InvoiceAddress = invoiceAddress;
+     DeliveryAddress = deliveryAddress;
   }
-} 
+}
 ```
 
-From outside the class, the entity identifier is accessible via the `Identifier` property.
+From outside the class the entity identifier is accessible via the `Identifier` property.
 
 ```csharp
-var basket = new Basket(identifier);
+var basket = new Basket(identifier, invoiceAddress, deliveryAddress);
 var basketIdentifier = basket.Identifier;
 ```
 
-The `Equals()` method is implemented to only compare the two entities identifiers. No other field are taken into consideration when comparing entities.
+The `Equals()` method is implemented to compare only the identifiers of two entity classes of the same type.
+No other members are taken into consideration when comparing entity classes.
 
-The `==` and `!=` operators are also available for comparing entities.
+The `==` and `!=` operators are also available for comparison operations.
 
 ## Value
-The base class for value classes.
+The `Value` class is the base class for value types.
 
-A value class contains one or more fields (or values). Two instances of the same value type are consideres to be equal if and only if, the corresponding fields in each instance has the same values.
+By default all fields and properties (from now on referred to a **value members**) in a value type, are evaluated when comparing two values of the same type.
+This is true no matter which access modifier the value members are decorated with.
+
+Two values of the same type are considered to be equal if and only if all corresponding value members in each instance have the same value.
 
 ```csharp
-public sealed class Address : Value<Address> {
-
-  public string Street { get; }
-  public string HouseNumber { get; }
-  public string Floor { get; }
-  public string PostalCode { get; }
+public sealed class Address : Value<Address>
+{
+  public readonly string Street;
+  public readonly string HouseNumber;
+  public readonly string Floor;
+  public readonly string PostalCode;
   
-  /* More fields */
-  
-  protected override object[] PropertiesForEqualityCheck => new object[] { Street, HouseNumber, Floor, PostalCode };
-
   public Address(string street, string houseNumber, string floor, string postalCode)
   {
     Street = street;
@@ -67,12 +71,102 @@ public sealed class Address : Value<Address> {
 } 
 ```
 
-The abstract property `PropertiesForEqualityCheck` defines what fields makes the value class unique. The fields included in this array, will be use in equality checks and will influence the result, when two values objects of the same type are compared using the `Equals()` method.
+The `Equals()` method is implemented to compare only included value members of two instances.
+All excluded value members are skipped. More on that in the next sections.
 
-The `==` and `!=` operators are also available for comparing values types.
+The `==` and `!=` operators are also available for comparison operations.
+
+### Excluding Value Members
+Annotate a value member with [ExcludeAttribute](src/DomainDrivenDesign/ExcludeAttribute.cs) to exclude it from equality operations.
+
+```csharp
+public class Sushi : Value<Sushi> 
+{
+  public virtual string Name { get; }
+  
+  [Exclude]
+  public virtual double Price  { get; }
+  
+  public Sushi(string name, double price)
+  {
+    Name = name;
+    Price = price;
+  }
+}
+```
+
+In this case the property `Price` is ignored in all equality operations.
+
+```csharp
+var firstSalmonNirigi = new Sushi("Salmon Nigiri", 1.99);
+var secondSalmonNirigi = new Sushi("Salmon Nigiri", 0.99);
+
+var salmonNigiriPiecesAreEqual = firstSalmonNirigi == secondSalmonNirigi; // true
+```
+
+### Including Value Members
+An excluded virtual property can be included in a child class by overriding the property and annotating it with [IncludeAttribute](src/DomainDrivenDesign/IncludeAttribute.cs).
+
+```csharp
+public class PriceConsciousSushi : Sushi
+{
+  [Include]
+  public override double Price { get; }
+  
+  public PriceConsciousSushi(string name, string price) : base(name, price)
+  {
+    Price = price;
+  }
+}
+```
+
+`PriceConsciousSushi` will in this case behave as if the `Price` property had never been excluded.
+
+```csharp
+var firstSalmonNirigi = new PriceConsciousSushi("Salmon Nigiri", 1.99);
+var secondSalmonNirigi = new PriceConsciousSushi("Salmon Nigiri", 0.99);
+
+var salmonNigiriPiecesAreEqual = firstSalmonNirigi.Equals(secondSalmonNirigi); // false
+```
+
+If the `Price` property had not been explicitly annotated with [IncludeAttribute](src/DomainDrivenDesign/IncludeAttribute.cs) then the exclusion would have been inherited and the price would still have been ignored.
+
+### A Word on Inheritance
+The state of value members are inherited by child classes.
+If a value member is excluded then it's also excluded in all classes inheriting from this class.
+
+Properties are special value member in that they can be overridden if marked as virtual.
+If a property is overridden, the properties checked one by one starting from the outermost class in which the property is declared. This first explicit inclusion or exclusion encountered defines the state of that property.
+If non of the properties are explicitly annotated then the property will be regarded as included.
+
+The login that applies to virtual properties also apply to abstract properties and their implementations.
+
+Note that if a value member is annotated with both [ExcludeAttribute](src/DomainDrivenDesign/ExcludeAttribute.cs) and [IncludeAttribute](src/DomainDrivenDesign/IncludeAttribute.cs) then the value member will be excluded since an exclude trumps an include.
+
+### Custom Property Backing Fields
+Manually implemented backing fields for properties should be excluded manually. Otherwise they'll be included in equality operation.
+
+```csharp
+public class Sushi : Value<Sushi> 
+{
+  [Exclude]
+  private readonly string _name;
+
+  public virtual string Name => _name;
+    
+  public Sushi(string name)
+  {
+    _name = name;
+  }
+}
+```
+
+Technically it wouldn't matter whether or not the backing field in this example was excluded, but it's important to keep in mind that all fields and properties are included in equality operations by default.
+
+Backing fields automatically created by the compiler for properties are always ignored.
 
 ## TinyValue
 
 Coming soon.
 
-*© Copyright 2021 Michel Gammelgaard. All rights reserved. Provided under the [MIT license](LICENSE).*
+*Copyright © 2022 Michel Gammelgaard, Acidus. All rights reserved. Provided under the [MIT license](LICENSE).*

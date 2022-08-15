@@ -7,14 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainDrivenDesign", "src\D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainDrivenDesign.UnitTests", "test\DomainDrivenDesign.UnitTests\DomainDrivenDesign.UnitTests.csproj", "{3764295F-02BB-46B9-9317-AC3C09855B5D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{66904706-5F81-47B4-BA24-65C52EA9E7C7}"
-	ProjectSection(SolutionItems) = preProject
-		.gitignore = .gitignore
-		.github\workflows\continuous-integration.yml = .github\workflows\continuous-integration.yml
-		LICENSE = LICENSE
-		.github\workflows\release.yml = .github\workflows\release.yml
-		Test.runsettings = Test.runsettings
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainDrivenDesign.IntegrationTests", "test\DomainDrivenDesign.IntegrationTests\DomainDrivenDesign.IntegrationTests.csproj", "{F7C68A75-F1C3-479C-BB78-C66B6F2E2292}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +23,10 @@ Global
 		{3764295F-02BB-46B9-9317-AC3C09855B5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3764295F-02BB-46B9-9317-AC3C09855B5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3764295F-02BB-46B9-9317-AC3C09855B5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7C68A75-F1C3-479C-BB78-C66B6F2E2292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7C68A75-F1C3-479C-BB78-C66B6F2E2292}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7C68A75-F1C3-479C-BB78-C66B6F2E2292}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7C68A75-F1C3-479C-BB78-C66B6F2E2292}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

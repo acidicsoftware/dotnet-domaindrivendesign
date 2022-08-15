@@ -1,5 +1,5 @@
-﻿using System.Reflection;
-using Acidic.DomainDrivenDesign.UnitTests.Helpers;
+﻿using System;
+using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -17,7 +17,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
         [DataRow(1)]
         [DataRow(1337)]
         [DataRow(int.MaxValue)]
-        public void WHEN_Instantiating_WHILE_ArgumentIsValid_THEN_CreateInstance(int expectedIdentifier)
+        public void WHILE_ValidIdentifierIsProvided_WHEN_Instantiating_THEN_CreateInstance(int expectedIdentifier)
         {
             // Act
             var entityMock = new Mock<Entity<int>>(expectedIdentifier);
@@ -29,13 +29,21 @@ namespace Acidic.DomainDrivenDesign.UnitTests.Entity
         }
 
         [TestMethod]
-        public void WHEN_Instantiating_WHILE_ArgumentIsNull_THEN_ThrowException()
+        public void WHILE_IdentifierIsNull_WHEN_InstantiatingEntity_THEN_ThrowException()
         {
             // Arrange
             const string identifier = null;
 
             // Act & Assert
-            ExceptionHelpers.ExpectArgumentNullException("identifier", () => new StringEntity(identifier));
+            var exception = Assert.ThrowsException<ArgumentNullException>(() => new StringEntity(identifier));
+            Assert.AreEqual("identifier", exception.ParamName);
+        }
+        
+        private sealed class StringEntity : Entity<string>
+        {
+            public StringEntity(string identifier) : base(identifier)
+            {
+            }
         }
     }
 }
