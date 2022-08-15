@@ -9,7 +9,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
         [DataTestMethod]
         [DataRow(null)]
         [DataRow("Field 1 Value")]
-        public void WHEN_TinyHasOneField_THEN_FieldsAreSet(string expectedField1Value)
+        public void WHILE_TinyHasOneField_THEN_FieldsAreSet(string expectedField1Value)
         {
             // Arrange
 
@@ -23,7 +23,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
         [DataTestMethod]
         [DataRow(null, null)]
         [DataRow("Field 1 Value", "Field 2 Value")]
-        public void WHEN_TinyHasTwoFields_THEN_FieldsAreSet(string expectedField1Value, string expectedField2Value)
+        public void WHILE_TinyHasTwoFields_THEN_FieldsAreSet(string expectedField1Value, string expectedField2Value)
         {
             // Arrange
 
@@ -38,7 +38,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
         [DataTestMethod]
         [DataRow(null, null, null)]
         [DataRow("Field 1 Value", "Field 2 Value", "Field 3 Value")]
-        public void WHEN_TinyHasThreeFields_THEN_FieldsAreSet(string expectedField1Value, string expectedField2Value, string expectedField3Value)
+        public void WHILE_TinyHasThreeFields_THEN_FieldsAreSet(string expectedField1Value, string expectedField2Value, string expectedField3Value)
         {
             // Arrange
 
@@ -54,7 +54,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
         [DataTestMethod]
         [DataRow(null, null, null, null)]
         [DataRow("Field 1 Value", "Field 2 Value", "Field 3 Value", "Field 4 Value")]
-        public void WHEN_TinyHasFourFields_THEN_FieldsAreSet(string expectedField1Value, string expectedField2Value, string expectedField3Value, string expectedField4Value)
+        public void WHILE_TinyHasFourFields_THEN_FieldsAreSet(string expectedField1Value, string expectedField2Value, string expectedField3Value, string expectedField4Value)
         {
             // Arrange
 
@@ -71,7 +71,7 @@ namespace Acidic.DomainDrivenDesign.UnitTests.TinyValue
         [DataTestMethod]
         [DataRow(null, null, null, null, null)]
         [DataRow("Field 1 Value", "Field 2 Value", "Field 3 Value", "Field 4 Value", "Field 5 Value")]
-        public void WHEN_TinyHasFiveFields_THEN_FieldsAreSet(string expectedField1Value, string expectedField2Value, string expectedField3Value, string expectedField4Value, string expectedField5Value)
+        public void WHILE_TinyHasFiveFields_THEN_FieldsAreSet(string expectedField1Value, string expectedField2Value, string expectedField3Value, string expectedField4Value, string expectedField5Value)
         {
             // Arrange
 
